@@ -31,9 +31,10 @@ public class Database {
         return connection;
     }
 
+    // Legger inn et apparat i databasen.
     public void createApparat(String name, String description) throws SQLException {
 
-        String updateString = "INSERT INTO Apparat (Navn, Beskrivelse) VALUES(?.?)";
+        String updateString = "INSERT INTO Apparat (Navn, Beskrivelse) VALUES(?,?)";
 
 
         try(Connection connection = getConnection();
@@ -45,11 +46,56 @@ public class Database {
             System.out.println("Insertion complete.");
 
         } catch (SQLException e) {
+            e.printStackTrace();
+        }
+    }
+
+    // Legger inn en øvelse i databasen.
+    public void createExercise(int id, String name) throws SQLException {
+
+        String updateString = "INSERT INTO Øvelse (ID, Navn) VALUES(?,?)";
+
+        try(Connection connection = getConnection();
+            PreparedStatement statement = connection.prepareStatement(updateString)) {
+
+            statement.setInt(1, id);
+            statement.setString(2, name);
+            statement.executeUpdate();
+            System.out.println("Insertion complete.");
+
+        } catch (SQLException e) {
             throw e;
         }
     }
 
-    public static void main(String[] args) {
+    public void createWorkout(int dagbokID,
+                              String date,
+                              String time,
+                              String note,
+                              int form,
+                              int prestasjon)
+            throws SQLException {
+
+        String updateString = "INSERT INTO Treningsøkt (DagbokID, Dato, Tidspunkt, Notat, Form, Prestasjon) VALUES (?, ?, ?, ?, ?, ?)";
+
+        try(Connection connection = getConnection();
+            PreparedStatement statement = connection.prepareStatement(updateString)) {
+
+            statement.setInt(1, dagbokID);
+            statement.setString(2, date);
+            statement.setString(3, time);
+            statement.setString(4, note);
+            statement.setInt(5, form);
+            statement.setInt(6, prestasjon);
+            statement.executeUpdate();
+            System.out.println("Insertion complete.");
+
+        } catch (SQLException e) {
+            throw e;
+        }
+    }
+
+    public static void main(String[] args) throws SQLException {
         String url = "jdbc:mysql://mysql.stud.ntnu.no:3306/viktorgs_dbProsjekt";
         String name = "viktorgs_dbUser";
         String pass = "12345";
@@ -57,6 +103,10 @@ public class Database {
         System.out.println("Her");
         Database db = new Database(url, name, pass);
         System.out.println("Hurra");
-    }
 
+        // db.createApparat("Benk", "Massive gains"); Funket
+        // db.createExercise(1, "Kneløft"); Funket
+        // db.createWorkout(1, "150318", "1445", "Fantastisk", 10, 10); Funket
+    }
 }
+
