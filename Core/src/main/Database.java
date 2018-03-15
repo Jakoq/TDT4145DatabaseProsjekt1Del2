@@ -32,7 +32,7 @@ public class Database {
         return connection;
     }
 
-    // Legger inn et apparat i databasen.
+    // Legger inn et apparat i databasen. Skriv inn navn (hovednøkkel) og beskrivelse.
     public void createApparat(String name, String description) throws SQLException {
 
         String updateString = "INSERT INTO Apparat (Navn, Beskrivelse) VALUES(?,?)";
@@ -51,7 +51,7 @@ public class Database {
         }
     }
 
-    // Legger inn en øvelse i databasen.
+    // Legger inn en øvelse i databasen. Skriv inn id (hovednøkkel) og navn.
     public void createExercise(int id, String name) throws SQLException {
 
         String updateString = "INSERT INTO Øvelse (ID, Navn) VALUES(?,?)";
@@ -69,6 +69,8 @@ public class Database {
         }
     }
 
+    // Legger inn en treningsøkt  databasen.
+    // Skriv inn id (hovednøkkel) dato, tid, beskrivelse, form og prestasjon.
     public void createWorkout(int dagbokID,
                               String date,
                               String time,
@@ -96,6 +98,7 @@ public class Database {
         }
     }
 
+    // Legger inn en treningsgruppe i databasen. Skriv inn øvelsestype (hovednøkkel)
     public void createExerciseGroup(String exerciseType) {
 
         String updateString = "INSERT INTO Øvelsesgruppe (Øvelsestype) VALUES (?)";
@@ -112,6 +115,7 @@ public class Database {
         }
     }
 
+    // Henter ut øvelser basert på øvelsestype.
     public ArrayList<String> getExercisesByGroup(String exerciseGroup) throws SQLException {
         String query = "SELECT Øvelse.Navn FROM " +
                 "(Øvelse JOIN ØvelseIGruppe ON Øvelse.ID = ØvelseIGruppe.ØvelseID) " +
