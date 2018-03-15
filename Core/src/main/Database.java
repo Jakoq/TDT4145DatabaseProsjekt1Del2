@@ -95,6 +95,18 @@ public class Database {
         }
     }
 
+    public void equipment_in_use(){
+        String updateString = "SELECT count(*)\n" +
+                "FROM (Apparat as A) JOIN (ApparatØvelse as AØ) on A.Navn=AØ.Apparat_navn";
+        try (Connection connection = getConnection();
+            PreparedStatement statement = connection.prepareStatement(updateString)){
+            ResultSet rs = statement.executeQuery();
+            System.out.println(rs.getInt(1));
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+    }
+
     public static void main(String[] args) throws SQLException {
         String url = "jdbc:mysql://mysql.stud.ntnu.no:3306/viktorgs_dbProsjekt";
         String name = "viktorgs_dbUser";

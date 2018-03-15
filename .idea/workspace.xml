@@ -3,7 +3,7 @@
   <component name="ChangeListManager">
     <list default="true" id="5a84aac8-42cb-4901-89f4-7f743408c6a3" name="Default" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change beforePath="$PROJECT_DIR$/Core/Core.iml" afterPath="$PROJECT_DIR$/Core/Core.iml" />
+      <change beforePath="$PROJECT_DIR$/Core/src/main/Database.java" afterPath="$PROJECT_DIR$/Core/src/main/Database.java" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
@@ -29,12 +29,13 @@
       <file leaf-file-name="Database.java" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/Core/src/main/Database.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="252">
-              <caret line="12" column="25" lean-forward="true" selection-start-line="12" selection-start-column="25" selection-end-line="12" selection-end-column="25" />
+            <state relative-caret-position="462">
+              <caret line="107" column="5" lean-forward="true" selection-start-line="107" selection-start-column="5" selection-end-line="107" selection-end-column="5" />
               <folding>
-                <marker date="1521124082115" expanded="true" signature="1034:1085" ph="INSERT INTO Apparat... " />
-                <marker date="1521124082115" expanded="true" signature="1649:1690" ph="INSERT INTO Øvelse... " />
-                <marker date="1521124082115" expanded="true" signature="2407:2509" ph="INSERT INTO Treningsøkt... " />
+                <marker date="1521139381714" expanded="true" signature="1034:1085" ph="INSERT INTO Apparat... " />
+                <marker date="1521139381714" expanded="true" signature="1649:1690" ph="INSERT INTO Øvelse... " />
+                <marker date="1521139381714" expanded="true" signature="2407:2509" ph="INSERT INTO Treningsøkt... " />
+                <marker date="1521139381714" expanded="true" signature="3142:3252" ph="SELECT count... Apparat" />
               </folding>
             </state>
           </provider>
@@ -254,7 +255,7 @@
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="1687000" />
+    <option name="totallyTimeSpent" value="7381000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="78" y="-9" width="1851" height="1098" extended-state="6" />
@@ -308,9 +309,10 @@
         <state relative-caret-position="0">
           <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
           <folding>
-            <marker date="1521124082115" expanded="true" signature="1034:1085" ph="INSERT INTO Apparat... " />
-            <marker date="1521124082115" expanded="true" signature="1649:1690" ph="INSERT INTO Øvelse... " />
-            <marker date="1521124082115" expanded="true" signature="2407:2509" ph="INSERT INTO Treningsøkt... " />
+            <marker date="1521139381714" expanded="true" signature="1034:1085" ph="INSERT INTO Apparat... " />
+            <marker date="1521139381714" expanded="true" signature="1649:1690" ph="INSERT INTO Øvelse... " />
+            <marker date="1521139381714" expanded="true" signature="2407:2509" ph="INSERT INTO Treningsøkt... " />
+            <marker date="1521139381714" expanded="true" signature="3142:3252" ph="SELECT count... Apparat" />
           </folding>
         </state>
       </provider>
@@ -336,9 +338,10 @@
         <state relative-caret-position="546">
           <caret line="26" column="0" lean-forward="true" selection-start-line="26" selection-start-column="0" selection-end-line="26" selection-end-column="0" />
           <folding>
-            <marker date="1521124082115" expanded="true" signature="1034:1085" ph="INSERT INTO Apparat... " />
-            <marker date="1521124082115" expanded="true" signature="1649:1690" ph="INSERT INTO Øvelse... " />
-            <marker date="1521124082115" expanded="true" signature="2407:2509" ph="INSERT INTO Treningsøkt... " />
+            <marker date="1521139381714" expanded="true" signature="1034:1085" ph="INSERT INTO Apparat... " />
+            <marker date="1521139381714" expanded="true" signature="1649:1690" ph="INSERT INTO Øvelse... " />
+            <marker date="1521139381714" expanded="true" signature="2407:2509" ph="INSERT INTO Treningsøkt... " />
+            <marker date="1521139381714" expanded="true" signature="3142:3252" ph="SELECT count... Apparat" />
           </folding>
         </state>
       </provider>
@@ -348,9 +351,10 @@
         <state relative-caret-position="0">
           <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
           <folding>
-            <marker date="1521124082115" expanded="true" signature="1034:1085" ph="INSERT INTO Apparat... " />
-            <marker date="1521124082115" expanded="true" signature="1649:1690" ph="INSERT INTO Øvelse... " />
-            <marker date="1521124082115" expanded="true" signature="2407:2509" ph="INSERT INTO Treningsøkt... " />
+            <marker date="1521139381714" expanded="true" signature="1034:1085" ph="INSERT INTO Apparat... " />
+            <marker date="1521139381714" expanded="true" signature="1649:1690" ph="INSERT INTO Øvelse... " />
+            <marker date="1521139381714" expanded="true" signature="2407:2509" ph="INSERT INTO Treningsøkt... " />
+            <marker date="1521139381714" expanded="true" signature="3142:3252" ph="SELECT count... Apparat" />
           </folding>
         </state>
       </provider>
@@ -375,12 +379,13 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/Core/src/main/Database.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="252">
-          <caret line="12" column="25" lean-forward="true" selection-start-line="12" selection-start-column="25" selection-end-line="12" selection-end-column="25" />
+        <state relative-caret-position="462">
+          <caret line="107" column="5" lean-forward="true" selection-start-line="107" selection-start-column="5" selection-end-line="107" selection-end-column="5" />
           <folding>
-            <marker date="1521124082115" expanded="true" signature="1034:1085" ph="INSERT INTO Apparat... " />
-            <marker date="1521124082115" expanded="true" signature="1649:1690" ph="INSERT INTO Øvelse... " />
-            <marker date="1521124082115" expanded="true" signature="2407:2509" ph="INSERT INTO Treningsøkt... " />
+            <marker date="1521139381714" expanded="true" signature="1034:1085" ph="INSERT INTO Apparat... " />
+            <marker date="1521139381714" expanded="true" signature="1649:1690" ph="INSERT INTO Øvelse... " />
+            <marker date="1521139381714" expanded="true" signature="2407:2509" ph="INSERT INTO Treningsøkt... " />
+            <marker date="1521139381714" expanded="true" signature="3142:3252" ph="SELECT count... Apparat" />
           </folding>
         </state>
       </provider>
