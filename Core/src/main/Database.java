@@ -1,4 +1,5 @@
 import java.sql.*;
+import java.util.ArrayList;
 
 public class Database {
 
@@ -111,6 +112,27 @@ public class Database {
         }
     }
 
+    public ArrayList<String> getExercisesByGroup(String exerciseGroup) throws SQLException {
+        String query = "SELECT Øvelse.Navn FROM " +
+                "(Øvelse JOIN ØvelseIGruppe ON Øvelse.ID = ØvelseIGruppe.ØvelseID) " +
+                "JOIN Øvelsesgruppe ON ØvelseIGruppe.Øvelsestype = Øvelsesgruppe.Øvelsestype " +
+                "WHERE Øvelsesgruppe.Øvelsestype = ?";
+        ArrayList<String> exercises = new ArrayList<String>();
+
+        try (Connection connection = getConnection();
+             PreparedStatement preparedStatement = connection.prepareStatement(query)) {
+
+            preparedStatement.setString(1, exerciseGroup);
+            ResultSet rs = preparedStatement.executeQuery();
+            while (rs.next()) {
+                exercises.add(rs.getString("Navn"));
+            }
+        } catch (SQLException e) {
+            throw e;
+        }
+        return exercises;
+    }
+
     public static void main(String[] args) throws SQLException {
         String url = "jdbc:mysql://mysql.stud.ntnu.no:3306/viktorgs_dbProsjekt";
         String name = "viktorgs_dbUser";
@@ -124,6 +146,9 @@ public class Database {
         // db.createExercise(1, "Kneløft"); Funket
         // db.createWorkout(1, "150318", "1445", "Fantastisk", 10, 10); Funket
         // db.createExerciseGroup("Bevegelse"); Funket
+        // ArrayList<String> list = db.getExercisesByGroup("styrke"); Funket
+        // ArrayList<String> list = db.getExercisesByGroup("bevegelse"); Funket
     }
 }
+
 
