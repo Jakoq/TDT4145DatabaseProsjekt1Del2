@@ -64,7 +64,7 @@ public class Database {
             System.out.println("Insertion complete.");
 
         } catch (SQLException e) {
-            throw e;
+            e.printStackTrace();
         }
     }
 
@@ -91,7 +91,23 @@ public class Database {
             System.out.println("Insertion complete.");
 
         } catch (SQLException e) {
-            throw e;
+            e.printStackTrace();
+        }
+    }
+
+    public void createExerciseGroup(String exerciseType) {
+
+        String updateString = "INSERT INTO Øvelsesgruppe (Øvelsestype) VALUES (?)";
+
+        try(Connection connection = getConnection();
+            PreparedStatement statement = connection.prepareStatement(updateString)) {
+
+            statement.setString(1, exerciseType);
+            statement.executeUpdate();
+            System.out.println("Insertion complete.");
+
+        } catch (SQLException e) {
+            e.printStackTrace();
         }
     }
 
@@ -107,6 +123,7 @@ public class Database {
         // db.createApparat("Benk", "Massive gains"); Funket
         // db.createExercise(1, "Kneløft"); Funket
         // db.createWorkout(1, "150318", "1445", "Fantastisk", 10, 10); Funket
+        // db.createExerciseGroup("Bevegelse"); Funket
     }
 }
 
