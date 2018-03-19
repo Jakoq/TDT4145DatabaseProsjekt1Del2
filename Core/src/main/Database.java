@@ -13,7 +13,8 @@ public class Database {
         db_user = username;
         db_pw = password;
 
-        try (Connection connection = getConnection()) {
+        try {
+            Connection connection = getConnection();
             System.out.println("Connection established!");
         } catch (Exception e) {
             e.printStackTrace();
@@ -146,7 +147,7 @@ public class Database {
         Database db = new Database(url, name, pass);
         System.out.println("Hurra");
 
-        // db.createApparat("Benk", "Massive gains"); Funket
+        // db.createApparat("Nedtrekk", "Triceps");
         // db.createExercise(1, "Kneløft"); Funket
         // db.createWorkout(1, "150318", "1445", "Fantastisk", 10, 10); Funket
         // db.createExerciseGroup("Bevegelse"); Funket

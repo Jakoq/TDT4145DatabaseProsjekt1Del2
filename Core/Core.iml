@@ -11,7 +11,7 @@
     <orderEntry type="module-library">
       <library>
         <CLASSES>
-          <root url="jar://C:/Program Files (x86)/MySQL/Connector J 5.1/mysql-connector-java-5.1.45-bin.jar!/" />
+          <root url="jar://$USER_HOME$/Downloads/mysql-connector-java-5.1.46/mysql-connector-java-5.1.46.jar!/" />
         </CLASSES>
         <JAVADOC />
         <SOURCES />
