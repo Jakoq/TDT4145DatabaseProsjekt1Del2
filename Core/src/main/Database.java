@@ -1,3 +1,6 @@
+import com.mysql.cj.api.mysqla.result.Resultset;
+
+import javax.xml.transform.Result;
 import java.sql.*;
 import java.util.ArrayList;
 
@@ -6,6 +9,7 @@ public class Database {
     private String db_URL;
     private String db_user;
     private String db_pw;
+    private Connection connection;
 
     // Sjekker om vi har tilkobling til databasen
     public Database(String address, String username, String password) {
@@ -15,6 +19,7 @@ public class Database {
 
         try {
             Connection connection = getConnection();
+            this.connection = connection;
             System.out.println("Connection established!");
         } catch (Exception e) {
             e.printStackTrace();
@@ -137,6 +142,29 @@ public class Database {
         }
         return exercises;
     }
+
+    public ArrayList<String> getNLastWorkouts(int n){
+        ArrayList<String> workouts = new ArrayList<String>();
+        String query = "SELECT Notat, Dato " +
+                "FROM Treningsøkt AS T" +
+                " ORDER BY Dato DESC limit ?";
+        try {
+            PreparedStatement preparedStatement = this.connection.prepareStatement(query);
+            preparedStatement.setInt(1,n);
+            ResultSet rs = preparedStatement.executeQuery();
+            while(rs.next()){
+                String dato = rs.getString("Dato");
+                String notat = rs.getString("Notat");
+                workouts.add(dato + ": " + notat);
+            }
+        }
+        catch(SQLException e){
+            e.printStackTrace();
+        }
+        return workouts;
+    }
+
+
 
     public static void main(String[] args) throws SQLException {
         String url = "jdbc:mysql://mysql.stud.ntnu.no:3306/viktorgs_dbProsjekt";
