@@ -1,11 +1,14 @@
 import java.sql.*;
 import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.Iterator;
 
 public class Database {
 
     private String db_URL;
     private String db_user;
     private String db_pw;
+    private Connection connection;
 
     // Sjekker om vi har tilkobling til databasen
     public Database(String address, String username, String password) {
@@ -15,6 +18,7 @@ public class Database {
 
         try {
             Connection connection = getConnection();
+            this.connection = connection;
             System.out.println("Connection established!");
         } catch (Exception e) {
             e.printStackTrace();
@@ -122,7 +126,7 @@ public class Database {
                 "(Øvelse JOIN ØvelseIGruppe ON Øvelse.ID = ØvelseIGruppe.ØvelseID) " +
                 "JOIN Øvelsesgruppe ON ØvelseIGruppe.Øvelsestype = Øvelsesgruppe.Øvelsestype " +
                 "WHERE Øvelsesgruppe.Øvelsestype = ?";
-        ArrayList<String> exercises = new ArrayList<String>();
+        ArrayList<String> exercises = new ArrayList<>();
 
         try (Connection connection = getConnection();
              PreparedStatement preparedStatement = connection.prepareStatement(query)) {
@@ -138,6 +142,28 @@ public class Database {
         return exercises;
     }
 
+    // Henter ut antall øvelser per apparat.
+    public HashMap<String, Integer> excercisesPerEquipment() throws SQLException {
+        String apparatList = "SELECT Navn FROM Apparat";
+        HashMap<String, Integer> epe = new HashMap<>(); //epe = excercise per equipment
+        PreparedStatement statement1 = this.connection.prepareStatement(apparatList);
+        ResultSet rs1 = statement1.executeQuery();
+        while(rs1.next())
+            epe.put(rs1.getString("Navn"), 0);
+
+        for (String apparat:epe.keySet()) {
+            String query = "SELECT count(*)\n" +
+                    "FROM (Apparat as A) JOIN (ApparatØvelse as AØ) on A.Navn=AØ.Apparat_navn where A.Navn = ?";
+            PreparedStatement s2 = this.connection.prepareStatement(query);
+            s2.setString(1,apparat);
+            ResultSet rs2 = s2.executeQuery();
+            while (rs2.next()) {
+                epe.put(apparat, rs2.getInt(1));
+            }
+        }
+        return epe;
+    }
+
     public static void main(String[] args) throws SQLException {
         String url = "jdbc:mysql://mysql.stud.ntnu.no:3306/viktorgs_dbProsjekt";
         String name = "viktorgs_dbUser";
@@ -146,6 +172,8 @@ public class Database {
         System.out.println("Her");
         Database db = new Database(url, name, pass);
         System.out.println("Hurra");
+        System.out.println(db.excercisesPerEquipment());
+
 
         // db.createApparat("Nedtrekk", "Triceps"); Funket
         // db.createExercise(1, "Kneløft"); Funket

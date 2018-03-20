@@ -1,5 +1,8 @@
 import java.sql.SQLException;
+import java.util.HashMap;
+import java.util.Map;
 import java.util.Scanner;
+import java.util.Iterator;
 
 
 public class Controller {
@@ -111,7 +114,13 @@ public class Controller {
                 }
             }
             if (a == 5) {
-                System.out.println("Mangler");
+                System.out.println("Oversikt over antall øvelser per apparat:");
+                HashMap hm = db.excercisesPerEquipment();
+                Iterator it = hm.entrySet().iterator();
+                while(it.hasNext()){
+                    Map.Entry pair = (Map.Entry)it.next();
+                    System.out.println(String.format("%-20s %s", pair.getKey(), pair.getValue()));
+                }
             }
         reader.close();
     }
