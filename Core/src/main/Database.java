@@ -1,3 +1,6 @@
+
+
+import javax.xml.transform.Result;
 import java.sql.*;
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -142,6 +145,7 @@ public class Database {
         return exercises;
     }
 
+
     // Henter ut antall øvelser per apparat.
     public HashMap<String, Integer> excercisesPerEquipment() throws SQLException {
         String apparatList = "SELECT Navn FROM Apparat";
@@ -162,6 +166,27 @@ public class Database {
             }
         }
         return epe;
+    }
+
+    public ArrayList<String> getNLastWorkouts(int n){
+        ArrayList<String> workouts = new ArrayList<String>();
+        String query = "SELECT Notat, Dato " +
+                "FROM Treningsøkt AS T" +
+                " ORDER BY Dato DESC limit ?";
+        try {
+            PreparedStatement preparedStatement = this.connection.prepareStatement(query);
+            preparedStatement.setInt(1,n);
+            ResultSet rs = preparedStatement.executeQuery();
+            while(rs.next()){
+                String dato = rs.getString("Dato");
+                String notat = rs.getString("Notat");
+                workouts.add(dato + ": " + notat);
+            }
+        }
+        catch(SQLException e){
+            e.printStackTrace();
+        }
+        return workouts;
     }
 
     public static void main(String[] args) throws SQLException {

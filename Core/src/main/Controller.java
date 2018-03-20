@@ -1,6 +1,10 @@
 import java.sql.SQLException;
+
 import java.util.HashMap;
 import java.util.Map;
+
+import java.util.ArrayList;
+
 import java.util.Scanner;
 import java.util.Iterator;
 
@@ -80,7 +84,12 @@ public class Controller {
             }
 
             if (a == 2) {
-                System.out.println("...");
+                System.out.println("My man! You have chosen the correct path. How many workouts do you wanna see? ");
+                int n =  reader.nextInt();
+                ArrayList<String> workouts = db.getNLastWorkouts(n);
+                System.out.println(workouts.toString());
+                System.out.println("AHHHHHH YEAAAAAAAAAAAAAAH! ");
+
             }
 
             if (a == 3) {
