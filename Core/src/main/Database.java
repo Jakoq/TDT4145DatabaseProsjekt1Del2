@@ -45,7 +45,7 @@ public class Database {
             statement.setString(1, name);
             statement.setString(2, description);
             statement.executeUpdate();
-            System.out.println("Insertion complete.");
+            System.out.println("Apparatet ble registrert.");
 
         } catch (SQLException e) {
             e.printStackTrace();
@@ -63,7 +63,7 @@ public class Database {
             statement.setInt(1, id);
             statement.setString(2, name);
             statement.executeUpdate();
-            System.out.println("Insertion complete.");
+            System.out.println("Øvelsen ble registrert.");
 
         } catch (SQLException e) {
             e.printStackTrace();
@@ -109,7 +109,7 @@ public class Database {
 
             statement.setString(1, exerciseType);
             statement.executeUpdate();
-            System.out.println("Insertion complete.");
+            System.out.println("Øvelsesgruppe registrert.");
 
         } catch (SQLException e) {
             e.printStackTrace();
@@ -147,7 +147,7 @@ public class Database {
         Database db = new Database(url, name, pass);
         System.out.println("Hurra");
 
-        // db.createApparat("Nedtrekk", "Triceps");
+        // db.createApparat("Nedtrekk", "Triceps"); Funket
         // db.createExercise(1, "Kneløft"); Funket
         // db.createWorkout(1, "150318", "1445", "Fantastisk", 10, 10); Funket
         // db.createExerciseGroup("Bevegelse"); Funket
