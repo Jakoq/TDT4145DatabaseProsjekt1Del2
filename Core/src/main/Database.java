@@ -95,26 +95,34 @@ public class Database {
         }
     }
 
-    public void equipment_in_use(){
+    public int equipment_in_use() throws SQLException {
         String updateString = "SELECT count(*)\n" +
                 "FROM (Apparat as A) JOIN (ApparatØvelse as AØ) on A.Navn=AØ.Apparat_navn";
         try (Connection connection = getConnection();
-            PreparedStatement statement = connection.prepareStatement(updateString)){
+             PreparedStatement statement = connection.prepareStatement(updateString)) {
             ResultSet rs = statement.executeQuery();
-            System.out.println(rs.getInt(1));
-        } catch (SQLException e) {
-            e.printStackTrace();
+            while (rs.next()) {
+                return rs.getInt(1);
+            }
+
         }
+        throw new SQLException();
     }
+
+
+
+
 
     public static void main(String[] args) throws SQLException {
         String url = "jdbc:mysql://mysql.stud.ntnu.no:3306/viktorgs_dbProsjekt";
         String name = "viktorgs_dbUser";
         String pass = "12345";
 
+
         System.out.println("Her");
         Database db = new Database(url, name, pass);
         System.out.println("Hurra");
+        System.out.println(db.equipment_in_use());
 
         // db.createApparat("Benk", "Massive gains"); Funket
         // db.createExercise(1, "Kneløft"); Funket
